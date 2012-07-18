@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="row">
+    <div class="span12 ">
+        <h1>{{lemma.trefwoord}}</h1>
+    </div>
+</div>    
+<div class="row">
+    <div class="span4 well">
+        {{lemma.betekenis|linebreaks}}
+    </div>
+
+    {% for c in lemma.citaten %}
+    <div class="span6 pull-right"><p>{{c}}</p></div>
+    {% endfor %}
+</div>
+{% endblock container %}

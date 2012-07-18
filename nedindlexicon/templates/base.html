@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block pagetitle %}Nederlands Indisch Lexicon{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">NIL</a>
+
+            {% block searchbar %}
+            <form class="navbar-search pull-left" action="/search/" method="GET" id="searchform">
+                <input class="search-query span4" placeholder="Zoek" type="text" 
+                       value="{% if q %}{{q}}{% endif %}" id="q" name="q">
+                {% csrf_token %} 
+            </form>
+            {% endblock searchbar %}
+
+
+          <div class="nav-collapse pull-right">
+            <ul class="nav">
+              <li><a href="#about">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+
+{% block container %}{% endblock container %}
+
+      <hr>
+
+      <footer>
+        <p>&copy; Peter Mingaars, Jaap Heij, Maudy Smith, Pim Posthumus &middot; <a href="/colofon/">Colofon</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/nedind.js"></script>
+  </body>
+</html>

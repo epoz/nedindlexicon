@@ -1,0 +1,5 @@
+body {
+	padding: 60px 30px;
+}
+footer { width: 100%; background-color: #eee; margin-top: 150px; height: 40px; padding: 7px;  
+         text-align: center; font-style: italic; color: #888; border-top: 1px solid #ddd; }
