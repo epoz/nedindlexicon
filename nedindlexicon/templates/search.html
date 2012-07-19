@@ -4,13 +4,13 @@
 {% block container %}
 <div class="row">
 
-    <div class="span2 well">
+    <div class="span3 well">
         <ul class="nav nav-list">
         {% for f, fv in results.facets.items %}
             <li class="nav-header"><a href="#">{{f}}</a></li>
             {% for ft in fv.terms %}
                 <li><input {% filter_checkbox filters f ft.term %}type="checkbox" name="{{f}}" 
-                    class="{{f}}filter filterbox" data="{{ft.term}}">{{ft.term}} ({{ft.count}})</li>
+                    class="{{f}}filter filterbox" data="{{ft.term}}">{{ft.term|exp_afk}} ({{ft.count}})</li>
             {% endfor %}
         {% endfor %} 
         </ul>
@@ -30,10 +30,10 @@
         <tbody>
             {% for r in results %}
             <tr>
-                <td><a href="/trefwoord/{{r.trefnum}}">{{r.trefwoord}}</a></td>
-                <td>{{r.taal}}</td>
-                <td>{{r.sfeer}}</td>
-                <td>{{r.woordsoort}}</td>
+                <td><a href="/trefwoord/{{r.trefnum}}?q={{q}}">{{r.trefwoord}}</a></td>
+                <td>{{r.taal|exp_afk}}</td>
+                <td>{{r.sfeer|exp_afk}}</td>
+                <td>{{r.woordsoort|exp_afk}}</td>
             </tr>
             {% endfor %}
         </tbody>

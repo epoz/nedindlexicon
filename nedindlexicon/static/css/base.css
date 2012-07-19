@@ -3,3 +3,4 @@ body {
 }
 footer { width: 100%; background-color: #eee; margin-top: 150px; height: 40px; padding: 7px;  
          text-align: center; font-style: italic; color: #888; border-top: 1px solid #ddd; }
+.highlight { background-color: yellow; }

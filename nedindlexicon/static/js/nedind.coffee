@@ -17,7 +17,11 @@ $('#q').keydown (event) ->
 
 $('.filterbox').click (event) -> $('#q').focus()
 
-booya = () -> console.log('Ja! Page loaded')
+booya = () ->
+    if typeof(qparam) != 'undefined'
+        console.log('Ja! q was ' + qparam)
+        $('div').removeHighlight().highlight(qparam, false)
+        $('.highlight').animate({ backgroundColor: "#a7bf51"}, 800);
 
 $ ->
   booya()

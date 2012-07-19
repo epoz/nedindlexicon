@@ -1,18 +1,37 @@
 {% extends 'base.html' %}
+{% load nedind_util %}
 
 {% block container %}
 <div class="row">
     <div class="span12 ">
-        <h1>{{lemma.trefwoord}}</h1>
+        <h1><a href="/search/?q=%22{{lemma.trefwoord|urlencode}}%22">{{lemma.trefwoord}}</a></h1>
+        <a href="/search/?woordsoort={{lemma.woordsoort}}">{{lemma.woordsoort|exp_afk}}</a> &middot; 
+        <a href="/search/?taal={{lemma.taal}}">{{lemma.taal|exp_afk}}</a>        
+        {% if lemma.sfeer %}&middot; 
+        <a href="/search/?sfeer={{lemma.sfeer}}">{{lemma.sfeer|exp_afk}}</a>{% endif %}
+
     </div>
 </div>    
 <div class="row">
     <div class="span4 well">
-        {{lemma.betekenis|linebreaks}}
+        {{lemma.betekenis|betekenislinks|linebreaks}}
     </div>
 
     {% for c in lemma.citaten %}
-    <div class="span6 pull-right"><p>{{c}}</p></div>
+    <div class="span5 pull-right" style="border-top: 2px solid #eee; margin-bottom: 10px; padding-top: 10px">
+        <div style="font-weight: bold; font-size: 75%">
+            {{c.titel|linebreaks}}
+        </div>
+        {{c.meaningvar|linebreaks}}
+        <div class="pull-right" style="font-style: italic; font-size: 75%">    
+            {{c.naam1}}{% if c.naam2 %} &middot; {{c.naam2}}{% endif %}
+            {% if c.eerste_uitgave %} &middot; {{c.eerste_uitgave}}{% endif %}
+        </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock container %}
+
+{% comment %}
+    {u'titel': u'Je kunt niet altijd huilen\r\nEen Nederlands gezin in de laatste periode van Nederlands Oost-Indi\xeb', u'boekcode': u'MACJE', u'boekaanduiding': u'MacGillavry 1975', u'annotator': u'Voorwoord van B.V.A. R\xf6ling', u'naam2': None, u'jaartal': 1976, u'naam1': u'Annemie MacGillavry', u'sortorder': 70, u'meaningvar': u'"Heel toevallig haalt hij een vriend aan die de hele oorlog lang vrij bleef om door te werken, onmisbaar als hij was voor de kinaproduktie: \'Hij kreeg zelfs een band met rode bal, hij kwam in Japanse dienst als \'specialist\'. Het vrijwaarde hem voor het kamp.\' Dat zegt Charles. De rode bal: de rijzende zon voor de kinaspecialist, de ondergaande zon voor mij."', u'genrecode': 9.0, u'idboeken': 28, u'eerste_uitgave': u'De Boekerij, Baarn 1975', u'druk': u'3.0', u'uitgever': u'De Boekerij', u'fiction': u'N', u'lijstcode': 2.0, u'plaats': u'Baarn'}
+{% endcomment %}

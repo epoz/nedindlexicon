@@ -30,7 +30,13 @@
   });
 
   booya = function() {
-    return console.log('Ja! Page loaded');
+    if (typeof qparam !== 'undefined') {
+      console.log('Ja! q was ' + qparam);
+      $('div').removeHighlight().highlight(qparam, false);
+      return $('.highlight').animate({
+        backgroundColor: "#a7bf51"
+      }, 800);
+    }
   };
 
   $(function() {
