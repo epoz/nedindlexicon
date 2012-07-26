@@ -10,29 +10,66 @@
             <li class="nav-header"><a href="#">{{f}}</a></li>
             {% for ft in fv.terms %}
                 <li><input {% filter_checkbox filters f ft.term %}type="checkbox" name="{{f}}" 
-                    class="{{f}}filter filterbox" data="{{ft.term}}">{{ft.term|exp_afk}} ({{ft.count}})</li>
+                    class="{{f}}filter filterbox" data="{{ft.term}}">{{ft.term|exp_afk}}
+                    &nbsp;<span class="facetcount">{{ft.count}}</span></li>
             {% endfor %}
         {% endfor %} 
         </ul>
     </div>
 
     <div class="span8">
-    <h1>Search results {{results.count}} found</h1>
+        <div>
+                <h4>{{results.count}} gevonden</h4>
+
+        {% if paginator.num_pages > 1 %}
+        <div class="pagination pull-right">
+            <ul>
+                {% if data.has_previous %}<li>
+                    <a href="{{pageurl}}&page={{ data.previous_page_number }}">previous</a>
+                </li>{% endif %}
+                {% if data.number > 6 %}
+                <li>
+                    <a href="{{pageurl}}&page=1">...</a>
+                </li>
+                {% endif %}
+
+                {% for pp in pagerange %}
+                <li{% if data.number == pp %} class="active"{% endif %}>
+                    <a href="{{pageurl}}&page={{pp}}">
+                        {{pp}}
+                    </a>
+                </li>    
+                {% endfor %}
+                {% if paginator.num_pages > 10 and paginator.num_pages != data.number %}
+                <li>
+                    <a href="{{pageurl}}&page={{paginator.num_pages}}">...</a>
+                </li>
+                {% endif %}
+                {% if data.has_next %}<li>
+                    <a href="{{pageurl}}&page={{ data.next_page_number }}">next</a>
+                </li>{% endif %}
+            </ul>  
+        </div>
+        {% endif %}
+
+        </div>
+    
+    
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>&nbsp;</th>
+                <th>woord</th>
                 <th>taal</th>
-                <th>sfeer</th>
+                <th><a href="{{pageurl_nosort}}&sort=sfeer">sfeer</a></th>
                 <th>soort</th>
             </tr>
         </thead>
         <tbody>
-            {% for r in results %}
+            {% for r in data %}
             <tr>
                 <td><a href="/trefwoord/{{r.trefnum}}?q={{q}}">{{r.trefwoord}}</a></td>
                 <td>{{r.taal|exp_afk}}</td>
-                <td>{{r.sfeer|exp_afk}}</td>
+                <td><a href="/search/?q={{q}}&sfeer={{r.sfeer}}">{{r.sfeer|exp_afk}}</a></td>
                 <td>{{r.woordsoort|exp_afk}}</td>
             </tr>
             {% endfor %}

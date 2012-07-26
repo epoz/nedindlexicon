@@ -30,13 +30,19 @@
    "trefwoord" : {
             "_source" : { "enabled" : true, "compress" : true },
             "properties" : {
-                "trefwoord" :  {"type" : "string", "store": "no", "index": "analyzed"},
+                "trefwoord" :  {"type" : "string", "store": "no", "index": "not_analyzed"},
                 "trefnum" :    {"type" : "integer", "store": "no", "index": "not_analyzed"},
                 "woordsoort" : {"type" : "string", "store": "no", "index": "not_analyzed"},
                 "taal" :       {"type" : "string", "store": "no", "index": "not_analyzed"},
                 "sfeer" :      {"type" : "string", "store": "no", "index": "not_analyzed"}
             }
-        }
+        },
+   "boek" : {
+            "properties" : {
+                "jaartal": {"type" : "string", "store": "no", "index": "not_analyzed"},
+                "boekcode": {"type" : "string", "store": "no", "index": "not_analyzed"}
+            } 
+   }
 }
 
 }

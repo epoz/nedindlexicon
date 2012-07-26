@@ -13,16 +13,16 @@
     </div>
 </div>    
 <div class="row">
-    <div class="span4 well">
+    <div class="span5 well">
         {{lemma.betekenis|betekenislinks|linebreaks}}
     </div>
 
     {% for c in lemma.citaten %}
-    <div class="span5 pull-right" style="border-top: 2px solid #eee; margin-bottom: 10px; padding-top: 10px">
+    <div class="span5" style="border-top: 2px solid #eee; margin-bottom: 10px; padding-top: 10px">
+        {{c.meaningvar|linebreaks}}
         <div style="font-weight: bold; font-size: 75%">
             {{c.titel|linebreaks}}
-        </div>
-        {{c.meaningvar|linebreaks}}
+        </div>        
         <div class="pull-right" style="font-style: italic; font-size: 75%">    
             {{c.naam1}}{% if c.naam2 %} &middot; {{c.naam2}}{% endif %}
             {% if c.eerste_uitgave %} &middot; {{c.eerste_uitgave}}{% endif %}
