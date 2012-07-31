@@ -192,6 +192,10 @@ def betekenislinks(value):
         if value.find(nc) > -1:
             value = value.replace(nc, u'<a href="/search/?q=%s">%s</a>' % (urllib.quote_plus(nc.encode('utf8')), nc))
 
+    value = value.replace('\r\n', '\n')
+    
     # And now do the "zie:""
     value = re.sub(r'zie: (.*)', r'zie: <a href="/search/?q=%22\1%22">\1</a>', value)
+
+    value = re.sub(r'zie ook: (.*)', r'zie ook: <a href="/search/?q=%22\1%22">\1</a>', value)
     return mark_safe(value)
