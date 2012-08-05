@@ -4,20 +4,20 @@
 {% block container %}
 <div class="row">
 
-    <div class="span3 well">
+    <div class="span4 well">
         <ul class="nav nav-list">
         {% for f, fv in results.facets.items %}
             <li class="nav-header"><a href="#">{{f}}</a></li>
             {% for ft in fv.terms %}
                 <li><input {% filter_checkbox filters f ft.term %}type="checkbox" name="{{f}}" 
-                    class="{{f}}filter filterbox" data="{{ft.term}}">{{ft.term|exp_afk}}
+                    class="{{f}}filter filterbox" data="{{ft.term}}">  {{ft.term|exp_afk}}
                     &nbsp;<span class="facetcount">{{ft.count}}</span></li>
             {% endfor %}
         {% endfor %} 
         </ul>
     </div>
 
-    <div class="span8">
+    <div class="span7">
         <div>
                 <h4>{{results.count}} gevonden</h4>
 
@@ -57,11 +57,11 @@
     
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>woord</th>
-                <th>taal</th>
-                <th><a href="{{pageurl_nosort}}&sort=sfeer">sfeer</a></th>
-                <th>soort</th>
+            <tr style="background-color: #dfd">
+                <th><a href="{{pageurl_nosort}}&sort=woord">Woord</a></th>
+                <th><a href="{{pageurl_nosort}}&sort=taal">Taal</a></th>
+                <th><a href="{{pageurl_nosort}}&sort=sfeer">Sfeer</a></th>
+                <th><a href="{{pageurl_nosort}}&sort=woordsoort">Woordsoort</a></th>
             </tr>
         </thead>
         <tbody>

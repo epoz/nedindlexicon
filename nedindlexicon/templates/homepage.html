@@ -1,26 +1,42 @@
 {% extends 'base.html' %}
 
 {% block container %}
-      <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="row">
+
       <div class="hero-unit">
         <h1>Nederlands Indisch Lexicon</h1>
-        <p>Achtergrond informatie en voorbeeld woorden, moet nog geschreven worden.</p>
-        <p><a class="btn btn-primary btn-large" href="/help/about">Meer weten? &raquo;</a></p>
+        <br>
+        <form action="/search/" method="GET" id="searchform">
+          Type hier een woord om te zoeken:
+            <input class="search-query span4" type="text" 
+                   value="{% if q %}{{q}}{% endif %}" id="q" name="q">
+            {% csrf_token %}            
+        </form>
       </div>
+    </div>
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2><a href="/search/?q=kabaai">kabaai</a></h2>
-           <p>"De meisjes kwamen uit heur kamer, opgewekt en vriendelijk glimlachend, zachtjes plukkend en trekkend aan de punten van heur krijtwitte kabaai's, om ze recht te schikken."</p>
+    <div class="row">
+        <h3>Tips bij het zoeken</h3>
+        
+        <div class="span6">          
+          <ul>
+            <li>Om naar een deel van een woord te zoeken, gebruik een sterretje voor het ontbrekend deel.
+              bijv. <a href="/search/?q=ada*">ada*</a>
+            </li>
+            <li>Om naar een zin of woorden aan elkaar te zoeken gebruik aanhalingstekens, bijv. <a href="/search/?q=%22tempo%20doeloe%22">"tempo doeloe"</a></li>            
+          </ul>
         </div>
-        <div class="span4">
-          <h2><a href="/trefwoord/9016?q=tempo%20doeloe">tempo doeloe</a></h2>
-           <p>"Met de totoks, die zich in de tijd van tempo doeloe veel sterker aanpasten aan de Indische omstandigheden dan later het geval was, vormden de welgestelde Indo's een maatschappelijke groepering die bij benadering dezelfde levenswijze kenden."</p>
-       </div>
-        <div class="span4">
-          <h2><a href="/search/?q=arak">arak</a></h2>
-          <p>"Als het niet zo erg geweest was, gewoon zoveel zweep- of rotanslagen, goot zij arak, de allerbeste arak van meneer Generaals zelf over de wonden, dat deed wel pijn, erg, maar het was medicijn, dan gingen de wonden niet zweren."</p>
+
+        <div class="span6">
+          <ul>
+            <li>Door naar losse woorden te zoeken, bijv. <a href="/search/?q=tempo%20doeloe">tempo doeloe</a> word er een OF gedaan tussen de woorden. Dus de woord 'tempo' OF de woord 'doeloe' in de text.</li>
+            <li>Om een EN relatie tussen woorden in de text te doen, gebruik AND, bijv. <a href="/search/?q=brood%20AND%20rijst">brood AND rijst</a></li>
+          </ul>
         </div>
-      </div>
+
+    </div>
+
+
 {% endblock container %}
+
+{% block searchbar %}{% endblock searchbar %}

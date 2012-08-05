@@ -174,6 +174,12 @@ CCH|Eigenschap (karakter)
 D|Algemeen woord'''.split('\n'))
     return codes.get(value.upper(), value)
 
+@register.filter(name='hilitefixer')
+def hilitefixer(value):
+    value = value.strip('*')
+    value = value.replace('"', '')
+    return mark_safe(value)
+
 
 @register.filter(name='betekenislinks')
 def betekenislinks(value):

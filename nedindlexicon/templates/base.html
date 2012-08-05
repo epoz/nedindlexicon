@@ -1,3 +1,4 @@
+{% load nedind_util %}
 <!DOCTYPE html>
 
 <html>
@@ -28,7 +29,8 @@
             <form class="navbar-search pull-left" action="/search/" method="GET" id="searchform">
                 <input class="search-query span4" placeholder="Zoek" type="text" 
                        value="{% if q %}{{q}}{% endif %}" id="q" name="q">
-                {% csrf_token %} 
+                <i class="icon-search icon-white"> </i>
+                {% csrf_token %}
             </form>
             {% endblock searchbar %}
 
@@ -62,7 +64,7 @@
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/nedind.js"></script>
     {% if q %}
     <script type="text/javascript">
-    qparam = '{{q}}';
+    qparam = '{{q|hilitefixer}}';
     </script>
     {% endif %}
   </body>
