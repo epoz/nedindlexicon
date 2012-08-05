@@ -7,7 +7,7 @@
         <h1>Nederlands Indisch Lexicon</h1>
         <br>
         <form action="/search/" method="GET" id="searchform">
-          Type hier een woord om te zoeken:
+          Typ hier een woord om te zoeken:
             <input class="search-query span4" type="text" 
                    value="{% if q %}{{q}}{% endif %}" id="q" name="q">
             {% csrf_token %}            
@@ -20,17 +20,17 @@
         
         <div class="span6">          
           <ul>
-            <li>Om naar een deel van een woord te zoeken, gebruik een sterretje voor het ontbrekend deel.
+            <li>Om naar een deel van een woord te zoeken, gebruik een sterretje voor het ontbrekende deel.
               bijv. <a href="/search/?q=ada*">ada*</a>
             </li>
-            <li>Om naar een zin of woorden aan elkaar te zoeken gebruik aanhalingstekens, bijv. <a href="/search/?q=%22tempo%20doeloe%22">"tempo doeloe"</a></li>            
+            <li>Om naar een zin of meerdere woorden aan elkaar te zoeken gebruik aanhalingstekens, bijv. <a href="/search/?q=%22tempo%20doeloe%22">"tempo doeloe"</a></li>            
           </ul>
         </div>
 
         <div class="span6">
           <ul>
-            <li>Door naar losse woorden te zoeken, bijv. <a href="/search/?q=tempo%20doeloe">tempo doeloe</a> word er een OF gedaan tussen de woorden. Dus de woord 'tempo' OF de woord 'doeloe' in de text.</li>
-            <li>Om een EN relatie tussen woorden in de text te doen, gebruik AND, bijv. <a href="/search/?q=brood%20AND%20rijst">brood AND rijst</a></li>
+            <li> Door naar losse woorden te zoeken, bijv. <a href="/search/?q=tempo%20doeloe">tempo doeloe</a> wordt er een OF geplaatst tussen de woorden. Dus het zoekresultaat heeft OF het woord 'tempo' OF het woord 'doeloe' in de tekst.</li>
+            <li> Door naar losse woorden te zoeken met AND ertussen, bijv. <a href="/search/?q=brood%20AND%20rijst">brood AND rijst</a> geeft het zoekresultaat tekst met de woorden 'brood' EN 'rijst'.</li>
           </ul>
         </div>
 

@@ -27,9 +27,16 @@ def get_search_results(q, extra_filter=None, sort='trefwoord'):
 def home(request):
     return direct_to_template(request, "homepage.html")
 
+def balance_quotes(val):
+    count = len([x for x in val if x == '"'])
+    if (count % 2) == 1:
+        val = val + '"'
+    return val
 
 def search(request):
     q = request.GET.get('q', u'')
+    q = balance_quotes(q)
+    
     start = int(request.GET.get('start', 0))
     size = int(request.GET.get('size', 100))
     page = request.GET.get('page', 1)
