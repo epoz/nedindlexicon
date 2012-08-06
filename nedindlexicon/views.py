@@ -52,7 +52,7 @@ def search(request):
                 filterurl.append('%s=%s' % (fname, filterlistitem))
     if filters:
         filters = pyes.ANDFilter(filters.values())
-    pageurl = '?q=%s' % urllib.quote_plus(q)
+    pageurl = '?q=%s' % urllib.quote_plus(q.encode('utf8'))
     if filterurl:
         pageurl += '&'
         pageurl += '&'.join(filterurl)
