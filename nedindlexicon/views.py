@@ -23,6 +23,8 @@ def get_search_results(q, extra_filter=None, sort='trefwoord'):
         doc_types=['trefwoord'], sort=sort)
     return results
 
+def help(request, pagename="about"):
+    return direct_to_template(request, "help/%s.html" % pagename)
 
 def home(request):
     return direct_to_template(request, "homepage.html")
