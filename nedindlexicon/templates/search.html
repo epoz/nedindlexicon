@@ -8,9 +8,9 @@
         <ul class="nav nav-list">
         {% for f, fv in results.facets.items %}
             <li class="nav-header"><a href="#">{{f}}</a></li>
-            {% for ft in fv.terms %}
+            {% for ft in fv.terms|dictsort:"term" %}
                 <li><input {% filter_checkbox filters f ft.term %}type="checkbox" name="{{f}}" 
-                    class="{{f}}filter filterbox" data="{{ft.term}}">  {{ft.term|exp_afk}}
+                    title="{{ft.term}}" class="{{f}}filter filterbox" data="{{ft.term}}">  {{ft.term|exp_afk}}
                     &nbsp;<span class="facetcount">{{ft.count}}</span></li>
             {% endfor %}
         {% endfor %} 

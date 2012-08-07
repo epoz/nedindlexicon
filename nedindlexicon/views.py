@@ -80,3 +80,9 @@ def trefwoordview(request, trefnum):
         raise Exception('We need a 404')
     return direct_to_template(request, "trefwoord.html",
         {'lemma': results.next(), 'q': q})
+
+def naslagview(request):
+    es = pyes.ES(settings.ELASTIC_SEARCH)
+    r = es.search(pyes.MatchAllQuery(), indices='nedind', doc_types=['naslag'], sort="boekcode")
+    return direct_to_template(request, "naslag.html",
+        {'naslag': r})

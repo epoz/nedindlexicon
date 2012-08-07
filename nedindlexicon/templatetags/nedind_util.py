@@ -196,7 +196,7 @@ def betekenislinks(value):
                'TEEIND', 'VEEVAN', 'VELJAP', 'WITIND']:
         nc = nc.decode('utf8')
         if value.find(nc) > -1:
-            value = value.replace(nc, u'<a href="/search/?q=%s">%s</a>' % (urllib.quote_plus(nc.encode('utf8')), nc))
+            value = value.replace(nc, u'<a href="/naslag/#%s">%s</a>' % (urllib.quote_plus(nc.encode('utf8')), nc))
 
     value = value.replace('\r\n', '\n')
     
