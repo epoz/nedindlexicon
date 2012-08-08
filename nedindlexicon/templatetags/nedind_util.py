@@ -87,7 +87,7 @@ AABG|Eiland
 AABH|Zee, oceaan
 AABI|Tijd, seizoen
 AAC|Biologie
-AACA|Flora, landschap
+AACA|Flora
 AACB|Boom, bos, hout
 AACC|Plant, struik, heester
 AACD|Vrucht, noot, bloem, blad
