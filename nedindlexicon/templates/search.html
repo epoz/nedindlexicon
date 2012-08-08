@@ -70,9 +70,9 @@
             {% for r in data %}
             <tr>
                 <td><a href="/trefwoord/{{r.trefnum}}?q={{q}}">{{r.trefwoord}}</a></td>
-                <td>{{r.taal|exp_afk}}</td>
+                <td><a href="/search/?q={{q}}&taal={{r.taal}}">{{r.taal|exp_afk}}</a></td>
                 <td><a href="/search/?q={{q}}&sfeer={{r.sfeer}}">{{r.sfeer|exp_afk}}</a></td>
-                <td>{{r.woordsoort|exp_afk}}</td>
+                <td><a href="/search/?q={{q}}&woordsoort={{r.woordsoort}}">{{r.woordsoort|exp_afk}}</a></td>
             </tr>
             {% endfor %}
         </tbody>
