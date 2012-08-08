@@ -23,13 +23,21 @@
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">NIL</a>
+          <ul class="nav">
+            <li>
+              <a class="brand" href="/">NIL</a>
+            </li>
+            <li class="active">
+              <a href="/">Home</a>
+            </li>
+            <li><a href="/help/about">Help</a></li>
+          </ul>
 
             {% block searchbar %}
             <form class="navbar-search pull-left" action="/search/" method="GET" id="searchform">
                 <input class="search-query span4" placeholder="Zoek" type="text" 
                        value="{% if q %}{{q}}{% endif %}" id="q" name="q">
-                <i class="icon-search icon-white"> </i>
+                <a href="#" id="searchbutton"><i class="icon-search icon-white"> </i></a>
                 {% csrf_token %}
             </form>
             {% endblock searchbar %}
@@ -60,12 +68,12 @@
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery-1.7.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/bootstrap.js"></script>
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/jquery-highlight.js"></script>
-    {% block extra_js %}{% endblock extra_js %}
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/nedind.js"></script>
+    {% block extra_js %}{% endblock extra_js %}    
     {% if q %}
     <script type="text/javascript">
     qparam = '{{q|hilitefixer}}';
     </script>
     {% endif %}
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/nedind.js#8"></script>
   </body>
 </html>
