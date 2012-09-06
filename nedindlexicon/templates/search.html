@@ -77,6 +77,38 @@
             {% endfor %}
         </tbody>
     </table>
+
+{% if paginator.num_pages > 1 %}
+        <div class="pagination pull-right">
+            <ul>
+                {% if data.has_previous %}<li>
+                    <a href="{{pageurl}}&page={{ data.previous_page_number }}">previous</a>
+                </li>{% endif %}
+                {% if data.number > 6 %}
+                <li>
+                    <a href="{{pageurl}}&page=1">...</a>
+                </li>
+                {% endif %}
+
+                {% for pp in pagerange %}
+                <li{% if data.number == pp %} class="active"{% endif %}>
+                    <a href="{{pageurl}}&page={{pp}}">
+                        {{pp}}
+                    </a>
+                </li>    
+                {% endfor %}
+                {% if paginator.num_pages > 10 and paginator.num_pages != data.number %}
+                <li>
+                    <a href="{{pageurl}}&page={{paginator.num_pages}}">...</a>
+                </li>
+                {% endif %}
+                {% if data.has_next %}<li>
+                    <a href="{{pageurl}}&page={{ data.next_page_number }}">next</a>
+                </li>{% endif %}
+            </ul>  
+        </div>
+        {% endif %}
+    
     </div>
 </div>
 
