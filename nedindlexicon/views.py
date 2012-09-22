@@ -17,14 +17,14 @@ def get_search_results(q, extra_filter=None, sort='trefwoord'):
         q2 = q1.search()
     q2.facet.add_term_facet('taal')
     q2.facet.add_term_facet('woordsoort')
-    q2.facet.add_term_facet('sfeer', size="30")
+    q2.facet.add_term_facet('sfeer', size="60")
 
     results = es.search(query=q2, indices='nedind',
         doc_types=['trefwoord'], sort=sort)
     return results
 
 def help(request, pagename="about"):
-    return direct_to_template(request, "help/%s.html" % pagename)
+    return direct_to_template(request, "help/%s.html" % pagename, {'pagename': pagename})
 
 def home(request):
     return direct_to_template(request, "homepage.html")
