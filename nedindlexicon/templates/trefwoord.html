@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load nedind_util %}
+
+{% block container %}
+<div class="row">
+    <div class="span12 ">
+        
+        <h1><a href="/search/?q=%22{{lemma.trefwoord|urlencode}}%22">{{lemma.trefwoord}}</a>
+            {% if lemma.spelvar %}<span style="font-size: 60%">(                                
+                            {% for s in lemma.spelvar %}
+                            <a href="/search/?q=%22{{s|urlencode}}%22">{{s}}</a> 
+                            {% if not forloop.last %} &middot; {% endif %}{% endfor %})</span>
+            {% endif %}
+        </h1>
+        <a href="/search/?woordsoort={{lemma.woordsoort}}">{{lemma.woordsoort|exp_afk}}</a> &middot; 
+        <a href="/search/?taal={{lemma.taal}}">{{lemma.taal|exp_afk}}</a>        
+        {% if lemma.sfeer %}&middot; 
+        <a href="/search/?sfeer={{lemma.sfeer}}">{{lemma.sfeer|exp_afk}}</a>{% endif %}        
+    </div>
+</div>    
+<div class="row">
+    <div class="span5 well">
+        {{lemma.betekenis|betekenislinks|linebreaks}}
+    </div>
+    {% if lemma.samstel %}<div class="span5 well"><h4>Combinaties</h4>                                 
+                            {% for s in lemma.samstel %}
+                            <a href="/search/?q=%22{{s|urlencode}}%22">{{s}}</a> 
+                            {% if not forloop.last %} &middot; {% endif %}{% endfor %})</div>
+    {% endif %}
+
+
+    {% for c in lemma.citaten %}
+    <div class="span5" style="border-top: 2px solid #eee; margin-bottom: 10px; padding-top: 10px">
+        {{c.meaningvar|linebreaks}}
+        <div style="font-weight: bold; font-size: 75%">
+            {{c.titel|linebreaks}}
+        </div>        
+        <div class="pull-right" style="font-style: italic; font-size: 75%">    
+            {{c.naam1}}{% if c.naam2 %} &middot; {{c.naam2}}{% endif %}
+            {% if c.eerste_uitgave %} &middot; {{c.eerste_uitgave}}{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock container %}

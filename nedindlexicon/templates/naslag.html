@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load nedind_util %}
+
+{% block container %}
+    <div class="row">
+        <div class="span12 well">
+            <h1>Naslagwerken</h1>
+        </div>
+    </div>
+
+{% for n in naslag %}
+    <a name="{{n.boekcode}}"></a>
+    <div class="row">
+        <div class="span12">            
+            <h4>{{n.titel}}</h4>
+            <p><a href="/search/?q={{n.boekcode}}">{{n.boekcode}}</a>
+                <em>
+                {{n.naam1}}
+                {% if n.naam2 %} &middot; {{n.naam2}} {% endif %}
+                {% if n.naam3 %} &middot; {{n.naam3}} {% endif %}</em>
+            <br>
+                {{n.uitgever}}
+                {% if n.plaats %} &middot; {{n.plaats}} {% endif %}
+                {% if n.jaartal %} &middot; {{n.jaartal}} {% endif %}
+            </p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock container %}
